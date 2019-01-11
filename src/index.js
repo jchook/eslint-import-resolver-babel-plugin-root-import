@@ -74,7 +74,7 @@ exports.resolve = (source, file, config = {}, babelrc = '.babelrc') => {
             config.hasOwnProperty('rootPathSuffix')
         );
 
-    const options = isValidConfiguration ? config : getConfigFromBabel(process.cwd(), babelrc);
+    const options = isValidConfiguration ? config : getConfigFromBabel(path.dirname(file), babelrc);
     const optsArray = [].concat(options || []);
 
     // If parsed config from babel and plugin wasn't listed there
@@ -107,4 +107,3 @@ exports.resolve = (source, file, config = {}, babelrc = '.babelrc') => {
 
     return nodeResolve(transformedSource, file, {});
 };
-
